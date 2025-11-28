@@ -322,7 +322,3 @@ pyrightconfig.json
 
 
 # CUSTOM: ANDERSONBRAZ
-
-data/staged/*
-data/curated/*
-data/analytics/*
