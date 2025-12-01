@@ -8,16 +8,8 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
+# Configurações centralizadas
 PATH_PDF = "data/raw/"
-VECTOR_DB_PATH = "data/curated/t-cross_index/"
-EMBEDDING_MODEL = "intfloat/multilingual-e5-large-instruct"
-
-embeddings = HuggingFaceEmbeddings(
-    model_name=EMBEDDING_MODEL,
-    model_kwargs={"device": "cpu"},
-    encode_kwargs={"normalize_embeddings": True},
-    cache_folder=os.path.expanduser("~/.cache/huggingface/hub"),
-)
 
 def load_documents(path: str):
     loader = PyPDFDirectoryLoader(path, glob="*.pdf")
