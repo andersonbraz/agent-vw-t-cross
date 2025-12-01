@@ -8,17 +8,15 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 load_dotenv()
 
-# Configurações centralizadas
 PATH_PDF = "data/raw/"
 VECTOR_DB_PATH = "data/curated/t-cross_index/"
-EMBEDDING_MODEL = "intfloat/multilingual-e5-large-instruct"  # você pode trocar quando quiser
+EMBEDDING_MODEL = "intfloat/multilingual-e5-large-instruct"
 
-# Cache do modelo para não baixar toda vez (economiza tempo e banda)
 embeddings = HuggingFaceEmbeddings(
     model_name=EMBEDDING_MODEL,
-    model_kwargs={"device": "cpu"},                    # mude para "cuda" se tiver GPU
-    encode_kwargs={"normalize_embeddings": True},      # melhora qualidade do retrieval
-    cache_folder=os.path.expanduser("~/.cache/huggingface/hub"),  # opcional, deixa explícito
+    model_kwargs={"device": "cpu"},
+    encode_kwargs={"normalize_embeddings": True},
+    cache_folder=os.path.expanduser("~/.cache/huggingface/hub"),
 )
 
 def load_documents(path: str):
@@ -59,9 +57,6 @@ def create_or_load_vectorstore(chunks=None, path=VECTOR_DB_PATH):
         print("Vetorização concluída e salva!")
     return db
 
-# ======================
-#        EXECUÇÃO
-# ======================
 if __name__ == "__main__":
     inicio_total = datetime.now()
 
