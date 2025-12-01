@@ -10,6 +10,16 @@ load_dotenv()
 
 # Configurações centralizadas
 PATH_PDF = "data/raw/"
+VECTOR_DB_PATH = "data/curated/t-cross_index/"
+EMBEDDING_MODEL = "intfloat/multilingual-e5-large-instruct"  # você pode trocar quando quiser
+
+# Cache do modelo para não baixar toda vez (economiza tempo e banda)
+embeddings = HuggingFaceEmbeddings(
+    model_name=EMBEDDING_MODEL,
+    model_kwargs={"device": "cpu"},                    # mude para "cuda" se tiver GPU
+    encode_kwargs={"normalize_embeddings": True},      # melhora qualidade do retrieval
+    cache_folder=os.path.expanduser("~/.cache/huggingface/hub"),  # opcional, deixa explícito
+)
 
 def load_documents(path: str):
     loader = PyPDFDirectoryLoader(path, glob="*.pdf")
@@ -69,7 +79,3 @@ if __name__ == "__main__":
     print(f"Tempo total de processamento: {tempo_total}")
     print(f"Vetorstore salvo em: {VECTOR_DB_PATH}")
     print(f"Total de vetores no banco: {db._collection.count()}")
-
-    results = db.similarity_search("qual o consumo do T-Cross?", k=2)
-    for i, doc in enumerate(results, 1):
-        print(f"Resposta {i}: {doc.page_content[:200]}...\n")
