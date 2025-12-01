@@ -42,9 +42,9 @@ def load_vector(chunks, path):
 
 if __name__ == "__main__":
 
-    # Carregar Documentos
-
     init_rag = datetime.now()
+    
+    # Carregar Documentos
     
     documents = load_documents(PATH_PDF)
     print(f"Total de documentos: {len(documents)}")
@@ -60,6 +60,6 @@ if __name__ == "__main__":
 
     # Vetorizar Fatias
     
-    db = load_vector(chunks, "data/curated/")
+    db = load_vector(chunks, "data/curated/t-cross_index/")
     exec_time = datetime.now() - init_rag
     print("Tempo de execução:", exec_time)

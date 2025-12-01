@@ -321,4 +321,12 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/python,pythonvanilla,visualstudiocode,pycharm+all,jupyternotebooks
 
 
+
 # CUSTOM: ANDERSONBRAZ
+
+*.faiss
+*.pkl
+*.db
+
+data/curated/*_index/*
+chroma.sqlite3
