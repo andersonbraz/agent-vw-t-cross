@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from dotenv import load_dotenv
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -40,11 +41,25 @@ def load_vector(chunks, path):
     return db
 
 if __name__ == "__main__":
+
+    # Carregar Documentos
+
+    init_rag = datetime.now()
     
     documents = load_documents(PATH_PDF)
     print(f"Total de documentos: {len(documents)}")
+    exec_time = datetime.now() - init_rag
+    print("Tempo de execução:", exec_time)
+
+    # Fatiar Documentos
 
     chunks = create_chunks(documents)
     print(f"Total de chunks: {len(chunks)}")
+    exec_time = datetime.now() - init_rag
+    print("Tempo de execução:", exec_time)
 
+    # Vetorizar Fatias
+    
     db = load_vector(chunks, "data/curated/")
+    exec_time = datetime.now() - init_rag
+    print("Tempo de execução:", exec_time)
