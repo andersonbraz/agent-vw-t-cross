@@ -1,4 +1,4 @@
-# README
+# Agent VW T-Cross
 
 ## Step 01
 
@@ -18,8 +18,16 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ## Step 03
 
+Iniciando o serviço do ollama
+
+```shell
+ollama serve
+```
+
+## Step 04
+
 Instalação do gemma2:2b-instruct-q8_0
 
 ```shell
-ollama serve && ollama pull gemma2:2b-instruct-q8_0
+ollama pull gemma2:2b-instruct-q8_0
 ```
