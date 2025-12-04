@@ -31,3 +31,21 @@ Instalação do gemma2:2b-instruct-q8_0
 ```shell
 ollama pull gemma2:2b-instruct-q8_0
 ```
+
+## Step 05
+
+```shell
+python main.py
+```
+
+## Step 06
+
+```shell
+python app/chatbot.py
+```
+
+## Step 07
+
+```shell
+Você: Qual o consumo do T-Cross na estrada?
+```
